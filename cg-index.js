@@ -48,7 +48,7 @@ var promotions = {
 }
  
 cron.schedule('* */5 * * *', promotionPost);
-cron.schedule('*/52 * * * *', productPost);
+cron.schedule('*/50 * * * *', productPost);
 cron.schedule('* */2 * * *', emojiiPost);
 
 function tweet (content) {
