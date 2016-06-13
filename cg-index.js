@@ -71,7 +71,7 @@ function productPost() {
 	let promotion = pickRandomProperty(promotions);
 	let hashtag = pickRandomProperty(hashtags);
 	let emojii = pickRandomProperty(emojiis);
-	let content = "Use the promition code " + promotions[promotion] + ' to get 20% off ' + emojiis[emojii]['pic'] + ' ' + hashtags[hashtag] + ' ' + emojiis[emojii]['link'];
+	let content = "Use the promotion code " + promotions[promotion] + ' to get 20% off ' + emojiis[emojii]['pic'] + ' ' + hashtags[hashtag] + ' ' + emojiis[emojii]['link'];
 	tweet(content); 
 }
 
