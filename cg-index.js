@@ -38,7 +38,9 @@ var hashtags = {
 	webDev:'#webDev',
 	dev:'#dev',
 	programming:'#programming',
-	code:'#code'
+	code:'#code',
+	coding:'#coding',
+	humor: '#humor'
 }
 
 var promotions = {
@@ -47,9 +49,9 @@ var promotions = {
 	init: 'INIT'
 }
  
-cron.schedule('0 */5 * * *', promotionPost);
-cron.schedule('*/50 * * * *', productPost);
-cron.schedule('0 */2 * * *', emojiiPost);
+cron.schedule('0 0 */1 * *', productPost);
+cron.schedule('0 0 */3 * *', emojiiPost);
+cron.schedule('0 0 */5 * *', promotionPost);
 
 function tweet (content) {
 	Bot.post('statuses/update', { status: content }, function (err, reply) {
