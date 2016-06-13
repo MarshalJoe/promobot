@@ -49,9 +49,9 @@ var promotions = {
 	init: 'INIT'
 }
  
-cron.schedule('0 0 */1 * *', productPost);
-cron.schedule('0 0 */3 * *', emojiiPost);
-cron.schedule('0 0 */5 * *', promotionPost);
+cron.schedule('0 0 * * * *', productPost);
+cron.schedule('0 0 */3 * * *', emojiiPost);
+cron.schedule('0 0 */5 * * *', promotionPost);
 
 function tweet (content) {
 	Bot.post('statuses/update', { status: content }, function (err, reply) {
