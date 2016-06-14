@@ -32,6 +32,17 @@ var emojiis = {
 	}
 }
 
+var election = {
+	hrc: {
+		msg:'An ascii-art @HillaryClinton to say #ImWithHer #Election2016',
+		link:'https://codegear.io/collections/shirts/products/hillary-t-shirt-womens'
+	},
+	trump: {
+		msg:'Support and/or shock your #NeverTrump or #Trump2016 colleagues with ascii @realDonalTrump #Election2016',
+		link:'https://codegear.io/collections/shirts/products/trump-shirt-mens'
+	}
+}
+
 var hashtags = {
 	devHumor:'#devHumor',
 	programmerHumor:'#programmerHumor',
@@ -49,9 +60,10 @@ var promotions = {
 	init: 'INIT'
 }
  
-cron.schedule('0 0 * * * *', productPost);
-cron.schedule('0 0 */3 * * *', emojiiPost);
-cron.schedule('0 0 */5 * * *', promotionPost);
+cron.schedule('0 0 */2 * * *', productPost);
+cron.schedule('0 0 */5 * * *', emojiiPost);
+cron.schedule('0 0 */6 * * *', electionPost);
+cron.schedule('0 0 */13 * * *', promotionPost);
 
 function tweet (content) {
 	Bot.post('statuses/update', { status: content }, function (err, reply) {
@@ -62,10 +74,16 @@ function tweet (content) {
 	})
 };
 
+function electionPost() {
+	let party = pickRandomProperty(election);
+	let content = election[party]['msg'] + election['link'];
+	tweet(content);
+}
+
 function promotionPost() {
 	let promotion = pickRandomProperty(promotions);
 	let hashtag = pickRandomProperty(hashtags);
-	let content = "We're rolling out our technical tees and totes today! Use " + promotions[promotion] + ' for 20% off ' + hashtags[hashtag]
+	let content = "We're rolling out more technical tees and totes today! Use " + promotions[promotion] + ' for 20% off ' + hashtags[hashtag]
 	tweet(content);
 }
 
