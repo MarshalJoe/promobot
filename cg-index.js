@@ -76,7 +76,7 @@ function tweet (content) {
 
 function electionPost() {
 	let party = pickRandomProperty(election);
-	let content = election[party]['msg'] + election['link'];
+	let content = election[party]['msg'] + ' ' + election['link'];
 	tweet(content);
 }
 
