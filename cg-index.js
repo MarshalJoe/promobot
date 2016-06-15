@@ -60,7 +60,7 @@ var promotions = {
 	init: 'INIT'
 }
  
-cron.schedule('0 0 */2 * * *', productPost);
+cron.schedule('0 0 */3 * * *', productPost);
 cron.schedule('0 0 */5 * * *', emojiiPost);
 cron.schedule('0 0 */6 * * *', electionPost);
 cron.schedule('0 0 */13 * * *', promotionPost);
@@ -76,7 +76,7 @@ function tweet (content) {
 
 function electionPost() {
 	let party = pickRandomProperty(election);
-	let content = election[party]['msg'] + ' ' + election['link'];
+	let content = election[party]['msg'] + ' ' + election[party]['link'];
 	tweet(content);
 }
 
