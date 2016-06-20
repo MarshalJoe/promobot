@@ -59,11 +59,11 @@ var promotions = {
 	h:'HELLO',
 	init: 'INIT'
 }
- 
-cron.schedule('0 0 */3 * * *', productPost);
-cron.schedule('0 0 */5 * * *', emojiiPost);
-cron.schedule('0 0 */6 * * *', electionPost);
-cron.schedule('0 0 */13 * * *', promotionPost);
+
+cron.schedule('0 0 */2 * * *', contentPost); 
+cron.schedule('0 0 */12 * * *', productPost);
+cron.schedule('0 0 */15 * * *', emojiiPost);
+cron.schedule('0 0 */23 * * *', electionPost);
 
 function tweet (content) {
 	Bot.post('statuses/update', { status: content }, function (err, reply) {
@@ -73,6 +73,17 @@ function tweet (content) {
 		}
 	})
 };
+
+function contentPost() {
+	Bot.get('statuses/user_timeline', {screen_name: 'newsycombinator'}, function (err, reply) {
+		if (err) {
+			console.log(err);
+			return;	
+		}
+		let content = reply[0]['text'];
+		tweet(content);
+	})
+}
 
 function electionPost() {
 	let party = pickRandomProperty(election);
